@@ -1,0 +1,128 @@
+# es5实现继承
+* 父类实现
+```
+// 定义一个动物类
+function Animal(name){
+    this.name = name || 'Animal'
+    this.sleep = function(){
+        console.log(this.name+'正在睡觉')
+    }
+}
+// 原型方法
+Animal.prototype.eat = function(food){
+    console.log(this.name+'正在吃'+food)
+}
+```
+#### 1.原型链继承
+```
+function Cat(){
+}
+Cat.prototype = new Animal()
+Cat.prototype.name = 'cat'
+
+// Test code
+var cat = new Cat()
+console.log(cat.name) // cat
+console.log(cat.eat('fish'));
+console.log(cat.sleep());
+console.log(cat instanceof Animal); //true 
+console.log(cat instanceof Cat); //true
+```
+* 缺点
+1. 新增原型方法，必须先指向父类的实例
+2. 不能多继承
+3. 原型对象的引用属性共享
+#### 2.构造继承
+```
+function Cat(name){
+    Animal.call(this)
+    this.name = name || 'Tom'
+}
+// Test Code
+var cat = new Cat();
+console.log(cat.name);
+console.log(cat.sleep());
+console.log(cat instanceof Animal); // false
+console.log(cat instanceof Cat); // true
+```
+* 特点
+1. 引用属性不在公用
+2. 可以多继承
+* 缺点
+1. 实例不是父类的实例
+2. 不能继承原型方法
+3. 无法实现函数复用，每个字类都有父类实例函数的副本，影响性能
+#### 3.实例继承
+```
+function Cat(name){
+    var instance = new Animal()
+    instance.name = name || 'Tom'
+    return instance
+}
+// Test Code
+var cat = new Cat();
+console.log(cat.name);
+console.log(cat.sleep());
+console.log(cat instanceof Animal); // true
+console.log(cat instanceof Cat); // false
+```
+* 缺点
+1. 实例是父类的实例
+2. 不支持多继承
+#### 4.拷贝继承
+```
+function Cat(name){
+    var animal = new Animal()
+    for(var p in animal){
+        Cat.prototype[p] = animal[p]
+    }
+    Cat.prototype.name = name || 'Tom'
+}
+// Test Code
+var cat = new Cat();
+console.log(cat.name);
+console.log(cat.sleep());
+console.log(cat instanceof Animal); // false
+console.log(cat instanceof Cat); // true
+```
+* 缺点
+1. 效率低
+2. 不支持枚举的属性，无法继承
+
+#### 5.组合继承
+```
+function Cat(name){
+    Animal.call(this)
+    this.name = name || Tom
+}
+Cat.prototype = new Animal()
+Cat.prototype = Cat
+// Test Code
+var cat = new Cat();
+console.log(cat.name);
+console.log(cat.sleep());
+console.log(cat instanceof Animal); // true
+console.log(cat instanceof Cat); // true
+```
+* 缺点
+1. 调用了两次父类构造函数，生成两份实例
+#### 6. 寄生组合继承
+```
+function Cat(name){
+    Animal.call(this)
+    this.name = name || 'Tom'
+}
+(function(){
+    var Super = function(){}
+    Super.prototype = Animal.prototype
+    Cat.prototype = new Super()
+    Cat.prototype.constructor = Cat
+})()
+// Test Code
+var cat = new Cat();
+console.log(cat.name);
+console.log(cat.sleep());
+console.log(cat instanceof Animal); // true
+console.log(cat instanceof Cat); //true
+```
+* 实现复杂

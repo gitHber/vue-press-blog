@@ -1,0 +1,13 @@
+# js装饰器启用
+```
+{
+  "presets": [
+    ["es2015",{"loose": true}],
+    "stage-1", // 下版本
+    "react"
+  ],
+  "plugins": ["transform-decorators-legacy", "react-hot-loader/babel"] 
+    // 第一个就是，确保写在第一个
+}
+```
+> 安装 yarn add babel-plugin-stage-1 babel-plugin-transform-decorators-legacy --dev

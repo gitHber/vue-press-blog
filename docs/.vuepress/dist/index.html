@@ -3,102 +3,25 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>es5实现继承 | Hello vuepress</title>
-    <meta name="description" content="Just play nothing">
+    <title>个人主页</title>
+    <meta name="description" content="月肃生的blog">
+    <link rel="icon" href="/img/logo.png">
+  <link rel="manifest" href="/manifest.json">
+  <link rel="apple-touch-icon" href="/img/logo.png">
     
-    
-    <link rel="preload" href="/vue-press-blog/assets/css/0.styles.e81dda9c.css" as="style"><link rel="preload" href="/vue-press-blog/assets/js/app.e30d7fb3.js" as="script"><link rel="preload" href="/vue-press-blog/assets/js/3.dff82318.js" as="script"><link rel="prefetch" href="/vue-press-blog/assets/js/2.61c5963e.js"><link rel="prefetch" href="/vue-press-blog/assets/js/4.9a612935.js">
-    <link rel="stylesheet" href="/vue-press-blog/assets/css/0.styles.e81dda9c.css">
+    <link rel="preload" href="/assets/css/0.styles.daa8c5c4.css" as="style"><link rel="preload" href="/assets/js/app.79061fe7.js" as="script"><link rel="preload" href="/assets/js/3.cfa0bab1.js" as="script"><link rel="prefetch" href="/assets/js/5.ff3bce00.js"><link rel="prefetch" href="/assets/js/2.a5076612.js"><link rel="prefetch" href="/assets/js/4.aa789337.js"><link rel="prefetch" href="/assets/js/6.a71a1289.js"><link rel="prefetch" href="/assets/js/7.5d5526a0.js"><link rel="prefetch" href="/assets/js/8.57bf7c73.js"><link rel="prefetch" href="/assets/js/9.cb78c059.js"><link rel="prefetch" href="/assets/js/10.0fe2fd45.js"><link rel="prefetch" href="/assets/js/11.87f8775a.js"><link rel="prefetch" href="/assets/js/12.cb6e20ce.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.daa8c5c4.css">
   </head>
   <body>
-    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/vue-press-blog/" class="home-link router-link-exact-active router-link-active"><!----><span class="site-name">
-      Hello vuepress
-    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><!----></div></header><div class="sidebar-mask"></div><div class="sidebar"><!----><!----></div><div class="page"><div class="content"><h1 id="es5实现继承">es5实现继承</h1><ul><li>父类实现</li></ul><div class="language- extra-class"><pre class="language-text"><code>// 定义一个动物类
-function Animal(name){
-    this.name = name || 'Animal'
-    this.sleep = function(){
-        console.log(this.name+'正在睡觉')
-    }
-}
-// 原型方法
-Animal.prototype.eat = function(food){
-    console.log(this.name+'正在吃'+food)
-}
-</code></pre></div><h4 id="_1-原型链继承">1.原型链继承</h4><div class="language- extra-class"><pre class="language-text"><code>function Cat(){
-}
-Cat.prototype = new Animal()
-Cat.prototype.name = 'cat'
-
-// Test code
-var cat = new Cat()
-console.log(cat.name) // cat
-console.log(cat.eat('fish'));
-console.log(cat.sleep());
-console.log(cat instanceof Animal); //true 
-console.log(cat instanceof Cat); //true
-</code></pre></div><ul><li>缺点</li></ul><ol><li>新增原型方法，必须先指向父类的实例</li><li>不能多继承</li><li>原型对象的引用属性共享</li></ol><h4 id="_2-构造继承">2.构造继承</h4><div class="language- extra-class"><pre class="language-text"><code>function Cat(name){
-    Animal.call(this)
-    this.name = name || 'Tom'
-}
-// Test Code
-var cat = new Cat();
-console.log(cat.name);
-console.log(cat.sleep());
-console.log(cat instanceof Animal); // false
-console.log(cat instanceof Cat); // true
-</code></pre></div><ul><li>特点</li></ul><ol><li>引用属性不在公用</li><li>可以多继承</li></ol><ul><li>缺点</li></ul><ol><li>实例不是父类的实例</li><li>不能继承原型方法</li><li>无法实现函数复用，每个字类都有父类实例函数的副本，影响性能</li></ol><h4 id="_3-实例继承">3.实例继承</h4><div class="language- extra-class"><pre class="language-text"><code>function Cat(name){
-    var instance = new Animal()
-    instance.name = name || 'Tom'
-    return instance
-}
-// Test Code
-var cat = new Cat();
-console.log(cat.name);
-console.log(cat.sleep());
-console.log(cat instanceof Animal); // true
-console.log(cat instanceof Cat); // false
-</code></pre></div><ul><li>缺点</li></ul><ol><li>实例是父类的实例</li><li>不支持多继承</li></ol><h4 id="_4-拷贝继承">4.拷贝继承</h4><div class="language- extra-class"><pre class="language-text"><code>function Cat(name){
-    var animal = new Animal()
-    for(var p in animal){
-        Cat.prototype[p] = animal[p]
-    }
-    Cat.prototype.name = name || 'Tom'
-}
-// Test Code
-var cat = new Cat();
-console.log(cat.name);
-console.log(cat.sleep());
-console.log(cat instanceof Animal); // false
-console.log(cat instanceof Cat); // true
-</code></pre></div><ul><li>缺点</li></ul><ol><li>效率低</li><li>不支持枚举的属性，无法继承</li></ol><h4 id="_5-组合继承">5.组合继承</h4><div class="language- extra-class"><pre class="language-text"><code>function Cat(name){
-    Animal.call(this)
-    this.name = name || Tom
-}
-Cat.prototype = new Animal()
-Cat.prototype = Cat
-// Test Code
-var cat = new Cat();
-console.log(cat.name);
-console.log(cat.sleep());
-console.log(cat instanceof Animal); // true
-console.log(cat instanceof Cat); // true
-</code></pre></div><ul><li>缺点</li></ul><ol><li>调用了两次父类构造函数，生成两份实例</li></ol><h4 id="_6-寄生组合继承">6. 寄生组合继承</h4><div class="language- extra-class"><pre class="language-text"><code>function Cat(name){
-    Animal.call(this)
-    this.name = name || 'Tom'
-}
-(function(){
-    var Super = function(){}
-    Super.prototype = Animal.prototype
-    Cat.prototype = new Super()
-    Cat.prototype.constructor = Cat
-})()
-// Test Code
-var cat = new Cat();
-console.log(cat.name);
-console.log(cat.sleep());
-console.log(cat instanceof Animal); // true
-console.log(cat instanceof Cat); //true
-</code></pre></div><ul><li>实现复杂</li></ul></div><div class="page-edit"><!----><!----></div><!----></div></div></div>
-    <script src="/vue-press-blog/assets/js/3.dff82318.js" defer></script><script src="/vue-press-blog/assets/js/app.e30d7fb3.js" defer></script>
+    <div id="app" data-server-rendered="true"><div class="theme-container no-sidebar"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div><a href="/" class="home-link router-link-exact-active router-link-active"><!----><span class="site-name">
+      个人主页
+    </span></a><div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""><!----></div><nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link router-link-exact-active router-link-active">主页</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">博文</span><span class="arrow right"></span></a><ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----><a href="/react/" class="nav-link">React</a></li><li class="dropdown-item"><!----><a href="/vue/" class="nav-link">Vue</a></li><li class="dropdown-item"><h4>H5</h4><ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/h5/javascript.html" class="nav-link">javascript</a></li><li class="dropdown-subitem"><a href="/h5/css.html" class="nav-link">css</a></li><li class="dropdown-subitem"><a href="/h5/html.html" class="nav-link">html</a></li></ul></li><li class="dropdown-item"><!----><a href="/backend/" class="nav-link">backend</a></li></ul></div></div><div class="nav-item"><a href="/about.html" class="nav-link">关于</a></div><div class="nav-item"><a href="https://github.com/gitHber" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><!----></nav></div></header><div class="sidebar-mask"></div><div class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link router-link-exact-active router-link-active">主页</a></div><div class="nav-item"><div class="dropdown-wrapper"><a class="dropdown-title"><span class="title">博文</span><span class="arrow right"></span></a><ul class="nav-dropdown" style="display:none;"><li class="dropdown-item"><!----><a href="/react/" class="nav-link">React</a></li><li class="dropdown-item"><!----><a href="/vue/" class="nav-link">Vue</a></li><li class="dropdown-item"><h4>H5</h4><ul class="dropdown-subitem-wrapper"><li class="dropdown-subitem"><a href="/h5/javascript.html" class="nav-link">javascript</a></li><li class="dropdown-subitem"><a href="/h5/css.html" class="nav-link">css</a></li><li class="dropdown-subitem"><a href="/h5/html.html" class="nav-link">html</a></li></ul></li><li class="dropdown-item"><!----><a href="/backend/" class="nav-link">backend</a></li></ul></div></div><div class="nav-item"><a href="/about.html" class="nav-link">关于</a></div><div class="nav-item"><a href="https://github.com/gitHber" target="_blank" rel="noopener noreferrer" class="nav-link external">
+  Github
+  <svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path><polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></div><!----></nav><!----></div><div class="custom-layout"><div class="container" data-v-2248a4e6>
+  Home-首页
+</div></div></div></div>
+    <script src="/assets/js/3.cfa0bab1.js" defer></script><script src="/assets/js/app.79061fe7.js" defer></script>
   </body>
 </html>

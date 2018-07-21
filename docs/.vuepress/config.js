@@ -23,7 +23,7 @@ module.exports = {
           {text: 'backend', link: '/backend/'},
         ]
       },
-      {text: '关于', link: '/about'},
+      {text: '关于', link: '/about/'},
       {text: 'Github', link: 'https://github.com/gitHber'}
     ],
     sidebar: 'auto',

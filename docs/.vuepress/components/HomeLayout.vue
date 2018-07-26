@@ -15,6 +15,12 @@ export default {
         name: 'React', percent: 80
       },{
         name: 'Vue', percent: 60
+      },{
+        name: 'Java', percent: 60
+      },{
+        name: 'Python', percent: 50
+      },{
+        name: 'node', percent: 55
       }]
     }
   },

@@ -16,9 +16,9 @@ module.exports = {
           {text: 'React', link: '/react/'},
           {text: 'Vue', link: '/vue/'},
           {text: 'H5', items: [
-            {text: 'javascript', link: '/h5/javascript'},
-            {text: 'css', link: '/h5/css'},
-            {text: 'html', link: '/h5/html'},
+            {text: 'javascript', link: '/h5/javascript/'},
+            {text: 'css', link: '/h5/css/'},
+            {text: 'html', link: '/h5/html/'},
           ]},
           {text: 'backend', link: '/backend/'},
         ]
@@ -26,13 +26,24 @@ module.exports = {
       {text: '关于', link: '/about/'},
       {text: 'Github', link: 'https://github.com/gitHber'}
     ],
-    sidebar: 'auto',
+    // sidebar: 'auto',
     sidebar: {
       '/react/': [
         '',
         '1'
       ],
       '/vue/': [
+        ''
+      ],
+      '/h5/javascript/': [
+        '',
+        '1'
+      ],
+      '/h5/html/': [
+        '',
+        '1'
+      ],
+      '/h5/css/': [
         ''
       ],
       '/backend/': [

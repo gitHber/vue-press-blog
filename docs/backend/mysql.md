@@ -3,7 +3,7 @@
 
 1. 下载安装包([5.7源码下载地址](https://dev.mysql.com/get/Downloads/MySQL-5.7/mysql-5.7.21-linux-glibc2.12-x86_64.tar.gz))
 > 需要其他版本请官网自行下载
-![image](https://img-blog.csdn.net/20180410120006330?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIyNjcyMjkx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![image](http://pcip8vul0.bkt.clouddn.com/20180410120006330.png)
 ---
 2. 安装
 
@@ -28,13 +28,13 @@ shell> bin/mysqld_safe --user=mysql &
 shell> cp support-files/mysql.server /etc/init.d/mysql.server 
 ```
 > 执行bin/mysqld --initialize --user=mysql 生成的随机密码请记住，之后第一次登陆要用
-![image](https://img-blog.csdn.net/20180410124255775?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIyNjcyMjkx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![image](http://pcip8vul0.bkt.clouddn.com/20180410120955481.png)
 * 启动服务
 ```
 shell> service mysql restart  
 ```
 **如果报错**
-![image](https://img-blog.csdn.net/20180410120955481?watermark/2/text/aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzIyNjcyMjkx/font/5a6L5L2T/fontsize/400/fill/I0JBQkFCMA==/dissolve/70)
+![image](http://pcip8vul0.bkt.clouddn.com/20180410124255775.png)
 执行
 ```
 shell> systemctl deamon-reload  

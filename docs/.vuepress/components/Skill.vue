@@ -42,6 +42,7 @@ export default {
       let height = this.$refs.container.clientHeight
       let nodes = [...this.nodes]
       let edges = [...this.edges]
+      d3.select('.d3-container').html('')
       let svg = d3.select('.d3-container')
         .append('svg')
         .attr('width', width)

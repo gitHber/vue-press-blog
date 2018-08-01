@@ -110,8 +110,10 @@ export default {
 </script>
 <style scoped lang='stylus' rel='stylesheet/stylus'>
   .d3-container
+    margin: 0 auto
+    border: 1px solid red
     height: 60vh
-    width: 100vw
+    width: 99vw
     overflow hidden
     svg
       overflow hidden

@@ -53,10 +53,12 @@ module.exports = {
     },
     sidebarDepth: 2,
     lastUpdated: 'Last Updated',
-    displayAllHeaders: true,
+    displayAllHeaders: false,
     activeHeaderLinks: false, // 默认值：true
     search: true,
-    searchMaxSuggestions: 10
+    searchMaxSuggestions: 10,
+    repo: 'gitHber/vue-press-blog',
+    repoLabel: '查看源码'
   },
   markdown: {
     lineNumbers: true

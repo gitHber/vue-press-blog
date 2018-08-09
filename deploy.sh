@@ -16,5 +16,7 @@ git init
 git add *
 git commit -m 'deploy'
 
+git config http.postBuffer 104857600
+
 # 发布到 https://<USERNAME>.github.io
 git push -f git@github.com:gitHber/githber.github.io.git master 

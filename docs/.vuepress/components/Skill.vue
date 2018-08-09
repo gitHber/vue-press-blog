@@ -112,7 +112,7 @@ export default {
 <style scoped lang='stylus' rel='stylesheet/stylus'>
   .d3-container
     margin: 0 auto
-    height: 60vh
+    height: 100%
     width: 99vw
     overflow hidden
     svg

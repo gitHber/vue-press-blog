@@ -1,12 +1,16 @@
 <!--  -->
 <template>
   <div class="container">
+    <left></left>
+    <right></right>
     <skill :skills="skills"></skill>
   </div>
 </template>
 
 <script type='text/ecmascript-6'>
 import Skill from './Skill'
+import Left from './Left'
+import Right from './Right'
 
 export default {
   data() {
@@ -25,11 +29,15 @@ export default {
     }
   },
   components:{
-    Skill
+    Skill,
+    Left,
+    Right
   }
 }
 </script>
 <style scoped lang='stylus' rel='stylesheet/stylus'>
   .container
     overflow hidden
+    height: calc(100vh - 3.6rem)
+    position relative
 </style>

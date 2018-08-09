@@ -13,51 +13,40 @@ module.exports = {
       {text: '主页', link: '/'},
       {text: '博文',
         items: [
-          {text: 'React', link: '/react/'},
-          {text: 'Vue', link: '/vue/'},
-          {text: 'H5', items: [
-            {text: 'javascript', link: '/h5/javascript/'},
-            {text: 'css', link: '/h5/css/'},
-            {text: 'html', link: '/h5/html/'},
-          ]},
-          {text: 'backend', link: '/backend/'},
+          {text: 'text1', link: '/path1/'},
+          {text: 'text2', items: [
+            {text: 'text2-1', link: '/path2/path2-1/'},
+            {text: 'text2-1', link: '/path2/path2-2/'}
+          ]}
         ]
       },
       {text: '关于', link: '/about/'},
       {text: 'Github', link: 'https://github.com/gitHber'}
     ],
-    // sidebar: 'auto',
     sidebar: {
-      '/react/': [
+      '/path1/': [
         '',
-        '1'
-      ],
-      '/vue/': [
-        ''
-      ],
-      '/h5/javascript/': [
-        '',
-        '1'
-      ],
-      '/h5/html/': [
-        '',
-        '1'
-      ],
-      '/h5/css/': [
-        ''
-      ],
-      '/backend/': [
-        '',
-        'mysql'
-      ],
+        '1',
+        {
+          title: 'group1',
+          children: [
+            "3"
+          ]
+        }
+      ]
     },
-    sidebarDepth: 2,
+    sidebarDepth: 1,
     lastUpdated: 'Last Updated',
     displayAllHeaders: false,
     activeHeaderLinks: false, // 默认值：true
     search: true,
     searchMaxSuggestions: 10,
     repo: 'gitHber/vue-press-blog',
+    docsDir: 'docs',
+    // 可选，默认为 master
+    docsBranch: 'master',
+    // 默认为 true，设置为 false 来禁用
+    editLinks: false,
     repoLabel: '查看源码'
   },
   markdown: {

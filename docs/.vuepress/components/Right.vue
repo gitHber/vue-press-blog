@@ -1,6 +1,6 @@
 <!--  -->
 <template>
-  <div class="right">right</div>
+  <div class="right" v-show="false">right</div>
 </template>
 
 <script type='text/ecmascript-6'>

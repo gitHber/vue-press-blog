@@ -8,7 +8,7 @@
 2. 安装
 
 * 创建用户组和用户，赋权，解压
-```
+```shell
 shell> groupadd mysql  
 shell> useradd -r -g mysql -s /bin/false mysql  
 shell> cd /usr/local  

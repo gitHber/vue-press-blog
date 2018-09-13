@@ -43,16 +43,17 @@
 function renderValine(router) {
   // 重新渲染 评论区
   router.afterEach((to, from) => {
-    if(!to.path.endsWith('.html')){
-      // README不需要评论
-      return
-    }
     let $page = document.querySelector('.page')
     let vcomments = document.getElementById('vcomments')
     if(!vcomments){
       vcomments = document.createElement('div')
       vcomments.id = 'vcomments'
       vcomments.style.margin = '1em 4em 0 4em'
+    }
+    if(!to.path.endsWith('.html')){
+      // README不需要评论
+      $page && $page.removeChild(vcomments)
+      return
     }
     if ($page && !vcomments){
       $page.appendChild(vcomments)
@@ -82,7 +83,8 @@ function valine() {
     notify:true, // 邮件提醒 
     verify:false, // 验证码
     avatar:'mm', 
-    placeholder: '说点什么吧' 
+    placeholder: '说点什么吧',
+    path: window.location.pathname
   });
 }
 

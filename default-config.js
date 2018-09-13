@@ -48,7 +48,15 @@ module.exports = {
     docsBranch: 'master',
     // 默认为 true，设置为 false 来禁用
     editLinks: false,
-    repoLabel: '查看源码'
+    repoLabel: '查看源码',
+    serviceWorker: {
+      updatePopup: true, // Boolean | Object, 默认值是 undefined.
+      // 如果设置为 true, 默认的文本配置将是: 
+      updatePopup: { 
+         message: "New content is available.", 
+         buttonText: "Refresh" 
+      }
+    }
   },
   markdown: {
     lineNumbers: true

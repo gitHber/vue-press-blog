@@ -3,7 +3,7 @@
   <div class="left" ref="left">
     <div class="content" :style="leftStyle">
       <div class="logo">
-       <img src="img/logo.png" />
+       <img src="/img/logo.png" />
       </div>
       <p style="font-weight:bold;color:#271b1b;font-family:KaiTi">李坤</p>
       <p style="font-weight:bold;color:#618855;font-family:FangSong">天行健，君子以自强不息</p>

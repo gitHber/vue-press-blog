@@ -1,4 +1,4 @@
-// 不太好用，暂时舍弃
+// gitment不太好用，暂时舍弃
 // function integrateGitment(router) {
 //   const linkGitment = document.createElement('link')
 //   linkGitment.href = 'https://imsun.github.io/gitment/style/default.css'
@@ -40,6 +40,53 @@
 //   }
 // }
 
+function renderValine(router) {
+  // 重新渲染 评论区
+  router.afterEach((to, from) => {
+    if(!to.path.endsWith('.html')){
+      // README不需要评论
+      return
+    }
+    let $page = document.querySelector('.page')
+    let vcomments = document.getElementById('vcomments')
+    if(!vcomments){
+      vcomments = document.createElement('div')
+      vcomments.id = 'vcomments'
+      vcomments.style.margin = '1em 4em 0 4em'
+    }
+    if ($page && !vcomments){
+      $page.appendChild(vcomments)
+    }else{
+      // 获取不到vuepress的page加载完成时的钩子，只能采用笨方法
+      setTimeout(()=>{
+        $page = document.querySelector('.page')
+        $page.appendChild(vcomments)
+        valine()
+      }, 500)
+    }
+    valine()
+  })
+}
+function valine() {
+  const Valine = require('valine')
+  const leancloudStorage = require('leancloud-storage')
+  // require window 
+  if (typeof window !== 'undefined') {
+    window.AV = leancloudStorage
+  }
+  // 初始化valine
+  new Valine({
+    el: '#vcomments' ,
+    appId: '168tL70jbqq81fD0oGioMpiH-gzGzoHsz',// your appId
+    appKey: 'LjkVyO0EBM1UhNEY3CzJMTzB', // your appKey
+    notify:true, // 邮件提醒 
+    verify:false, // 验证码
+    avatar:'mm', 
+    placeholder: '说点什么吧' 
+  });
+}
+
+
 export default ({
   Vue, // VuePress 正在使用的 Vue 构造函数
   options, // 附加到根实例的一些选项
@@ -49,6 +96,7 @@ export default ({
   try {
     // 生成静态页时在node中执行，没有document对象
     // document && integrateGitment(router)
+    document && renderValine(router)
   } catch (e) {
     console.error(e.message)
   }

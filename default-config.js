@@ -21,7 +21,8 @@ module.exports = {
         ]
       },
       {text: '关于', link: '/about/'},
-      {text: 'Github', link: 'https://github.com/gitHber'}
+      {text: 'Github', link: 'https://github.com/gitHber'},
+      {text: '简书', link: 'https://www.jianshu.com/u/dbebfffb18ba'},
     ],
     sidebar: {
       '/path1/': [

@@ -55,8 +55,10 @@ function renderValine(router) {
       $page && $page.removeChild(vcomments)
       return
     }
-    if ($page && !vcomments){
-      $page.appendChild(vcomments)
+    if ($page){
+      if(!document.querySelector('#vcomments')) {
+        $page.appendChild(vcomments)
+      }
     }else{
       // 获取不到vuepress的page加载完成时的钩子，只能采用笨方法
       setTimeout(()=>{

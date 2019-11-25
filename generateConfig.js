@@ -6,7 +6,7 @@ var sidebar = {}
 var items = []
 var docsPath = path.join(__dirname, 'docs')
 
-// 生成nav,docs下除了.vuepress,about,README.生成博文的路由
+// 生成nav,docs下除了.vuepress,about,README.生成文章的路由
 function generateNavByPath(){
   var items = []
   fs.readdirSync(docsPath).forEach(function(file){

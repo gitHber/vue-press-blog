@@ -11,7 +11,7 @@ module.exports = {
   themeConfig: {
     nav: [
       {text: '主页', link: '/'},
-      {text: '博文',
+      {text: '文章',
         items: [
           {text: 'text1', link: '/path1/'},
           {text: 'text2', items: [
@@ -22,7 +22,7 @@ module.exports = {
       },
       {text: '关于', link: '/about/'},
       {text: 'Github', link: 'https://github.com/gitHber'},
-      {text: '简书', link: 'https://www.jianshu.com/u/dbebfffb18ba'},
+      {text: '掘金', link: 'https://juejin.im/user/5b08e4856fb9a07aa83f2d39'},
     ],
     sidebar: {
       '/path1/': [

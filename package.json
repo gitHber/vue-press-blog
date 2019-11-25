@@ -4,8 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "node generateConfig.js && vuepress dev docs",
+    "start": "node generateConfig.js && vuepress dev docs",
     "build": "node generateConfig.js && vuepress build docs",
+    "now-build": "node generateConfig.js && vuepress build docs",
     "deploy": "bash deploy.sh"
   },
   "repository": {
